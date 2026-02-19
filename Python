@@ -1,0 +1,21 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+df = pd.read_csv('../dataset/Sample-Superstore.csv', encoding='latin1')
+
+print("Dataset loaded successfully.")
+print(df.head())
+
+print("Total Sales:", df['Sales'].sum())
+print("Total Profit:", df['Profit'].sum())
+
+sales_by_region = df.groupby('Region')['Sales'].sum()
+print(sales_by_region)
+
+sales_by_region.plot(kind='bar', title="Sales by Region")
+plt.show()
+
+df.to_excel('../excel/sales_cleaned.xlsx', index=False)
+print("Cleaned file saved.")
